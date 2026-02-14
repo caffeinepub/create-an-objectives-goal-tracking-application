@@ -7,18 +7,26 @@
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-add-a-home-button-house-icon-to-the-mobile-bottom-navigation-that-routes-to-the-homepage-and-ensure-it-uses-the-same-active-highlighting-behavior-as-other-bottom-nav-items",
-      "title": "Add a Home button (house icon) to the mobile bottom navigation that routes to the homepage ('/'), and ensure it uses the same active highlighting behavior as other bottom-nav items.",
+      "id": "feature-remove-the-languages-and-notifications-settings-from-the-app-ui-by-deleting-their-entries-from-the-mobile-bottom-navigation-and-ensuring-the-bottom-nav-layout-remains-correct-after-removal-no-empty-columns-or-misalignment",
+      "title": "Remove the Languages and Notifications settings from the app UI by deleting their entries from the mobile bottom navigation and ensuring the bottom nav layout remains correct after removal (no empty columns or misalignment).",
       "reqIds": [
-        "REQ-4"
+        "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-implement-the-requested-interaction-for-goals-users-must-be-able-to-either-swipe-slide-a-goal-card-or-use-a-checkbox-control-to-mark-a-goal-as-completed-not-completed-directly-from-the-goals-list-without-needing-to-open-the-goal-detail-page",
-      "title": "Implement the requested interaction for goals: users must be able to either swipe/slide a goal card or use a checkbox control to mark a goal as completed/not completed directly from the goals list, without needing to open the goal detail page.",
+      "id": "feature-remove-the-languages-and-notifications-routes-so-they-are-no-longer-accessible-within-the-app-navigation-i-e-the-router-does-not-register-languages-or-notifications",
+      "title": "Remove the Languages and Notifications routes so they are no longer accessible within the app navigation (i.e., the router does not register '/languages' or '/notifications').",
       "reqIds": [
-        "REQ-5"
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-clearly-discoverable-button-to-let-users-add-goals-which-navigates-to-the-existing-create-goal-flow-at-route-create",
+      "title": "Add a clearly discoverable '+' button to let users add goals, which navigates to the existing Create Goal flow at route '/create'.",
+      "reqIds": [
+        "REQ-3"
       ],
       "version": 1
     }
@@ -26,18 +34,18 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Add a Home button to return to the homepage",
+      "summary": "Retirer les réglages \"langues\" et \"notifications\" de l’application",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-2",
-      "summary": "Implement the requested interaction: ability to drag/slide or check/select items (\"faire glisser ou cocher\")",
+      "summary": "Ajouter un bouton \"+\" pour permettre d’ajouter des objectifs",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "projectName": "Add Home button to bottom navigation and enable swipe/checkbox interactions on goals",
+  "projectName": "Remove Languages/Notifications settings and add a '+' goal creation button",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

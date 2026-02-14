@@ -2,8 +2,8 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-a-home-button-house-icon-to-the-mobile-bottom-navigation-that-routes-to-the-homepage-and-ensure-it-uses-the-same-active-highlighting-behavior-as-other-bottom-nav-items",
-      "featureTitle": "Add a Home button (house icon) to the mobile bottom navigation that routes to the homepage ('/'), and ensure it uses the same active highlighting behavior as other bottom-nav items.",
+      "featureId": "feature-remove-the-languages-and-notifications-settings-from-the-app-ui-by-deleting-their-entries-from-the-mobile-bottom-navigation-and-ensuring-the-bottom-nav-layout-remains-correct-after-removal-no-empty-columns-or-misalignment",
+      "featureTitle": "Remove the Languages and Notifications settings from the app UI by deleting their entries from the mobile bottom navigation and ensuring the bottom nav layout remains correct after removal (no empty columns or misalignment).",
       "files": [
         "frontend/src/components/app/AppBottomNav.tsx"
       ],
@@ -16,16 +16,17 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-4"
+        "REQ-1"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-implement-the-requested-interaction-for-goals-users-must-be-able-to-either-swipe-slide-a-goal-card-or-use-a-checkbox-control-to-mark-a-goal-as-completed-not-completed-directly-from-the-goals-list-without-needing-to-open-the-goal-detail-page",
-      "featureTitle": "Implement the requested interaction for goals: users must be able to either swipe/slide a goal card or use a checkbox control to mark a goal as completed/not completed directly from the goals list, without needing to open the goal detail page.",
+      "featureId": "feature-remove-the-languages-and-notifications-routes-so-they-are-no-longer-accessible-within-the-app-navigation-i-e-the-router-does-not-register-languages-or-notifications",
+      "featureTitle": "Remove the Languages and Notifications routes so they are no longer accessible within the app navigation (i.e., the router does not register '/languages' or '/notifications').",
       "files": [
-        "frontend/src/components/goals/GoalCard.tsx",
-        "frontend/src/hooks/useQueries.ts"
+        "frontend/src/App.tsx",
+        "frontend/src/pages/LanguagesPage.tsx",
+        "frontend/src/pages/NotificationsPage.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -36,7 +37,27 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-5"
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-clearly-discoverable-button-to-let-users-add-goals-which-navigates-to-the-existing-create-goal-flow-at-route-create",
+      "featureTitle": "Add a clearly discoverable '+' button to let users add goals, which navigates to the existing Create Goal flow at route '/create'.",
+      "files": [
+        "frontend/src/components/goals/AddGoalButton.tsx",
+        "frontend/src/pages/GoalsDashboardPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
       ],
       "confidence": "high"
     }

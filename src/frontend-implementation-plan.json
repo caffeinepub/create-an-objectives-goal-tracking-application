@@ -1,49 +1,68 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Home bottom-nav item and quick complete interactions for goals list",
+  "title": "Remove Languages/Notifications from navigation and add '+' create-goal button",
   "requirements": [
     {
-      "id": "REQ-4",
-      "summary": "Add a Home (house icon) item to the mobile bottom navigation that routes to '/' and uses the existing active highlighting behavior without wrapping.",
+      "id": "REQ-1",
+      "summary": "Remove Languages/Notifications from the mobile bottom navigation and ensure the layout adapts cleanly to fewer items.",
       "acceptanceCriteria": [
-        "On mobile, the bottom navigation shows a Home item that navigates to '/' when tapped.",
-        "When the current route is '/', the Home item is styled as the active item (same active styling as other items).",
-        "The bottom navigation remains a 1-row layout and does not overflow or wrap on common mobile widths."
+        "On mobile, the bottom navigation no longer shows 'Languages' or 'Notifications'.",
+        "The bottom navigation layout adapts to the new number of items (no 7-column grid with empty space; spacing and touch targets remain consistent).",
+        "No other navigation items are removed or renamed."
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/app/AppBottomNav.tsx",
           "operation": "modify",
-          "description": "Add a Home nav item (use lucide-react Home/house icon) that links to '/' and participates in the same active highlighting logic; update the grid column count and sizing (e.g., grid-cols-7 + label/icon sizing) to keep a single-row mobile layout without wrapping/overflow. Verify the component's usage instructions before implementing."
+          "description": "Remove the '/languages' and '/notifications' nav items and their icons, and update the bottom-nav layout to be item-count adaptive (e.g., switch from a fixed 7-column grid to a flexible layout or an appropriate fixed column count matching the remaining items) so there are no empty columns or misalignment on mobile."
         }
       ]
     },
     {
-      "id": "REQ-5",
-      "summary": "Enable completing/uncompleting goals directly from the goals list via a visible checkbox and a horizontal swipe gesture, using the existing goal update mutation with optimistic UI + error rollback and without forcing navigation to the detail page.",
+      "id": "REQ-2",
+      "summary": "Remove the Languages and Notifications routes so the router no longer registers them.",
       "acceptanceCriteria": [
-        "Each goal in the goals dashboard list provides a visible checkbox (or equivalent check control) that toggles between Completed and Not Completed states.",
-        "Toggling via the checkbox updates the goal via the existing update mutation and refreshes the goals list state (completed badge/status updates accordingly).",
-        "On touch devices, each goal card supports a horizontal swipe/slide gesture that triggers the same complete/not-complete toggle (or reveals an action that performs the toggle).",
-        "Using the checkbox or swipe action does not trigger navigation into the goal detail page (card click-to-open remains available elsewhere on the card).",
-        "Error handling is present: if the update fails, the UI shows an error state/message and reverts the optimistic UI if applied."
+        "The router no longer defines routes for '/languages' and '/notifications'.",
+        "Navigating to '/languages' or '/notifications' via manual URL entry does not render the removed placeholder pages (it should fall back to the router's default not-found/route-missing behavior).",
+        "No other routes are impacted (e.g., '/', '/create', '/stats', '/settings', '/profile', '/averages' continue to work)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/hooks/useQueries.ts",
+          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Add a dedicated goal completion toggle mutation hook that uses the existing updateGoal mutation path (i.e., updates only the status while preserving the goal’s other fields), includes optimistic cache updates for the ['goals'] query, and rolls back on failure while invalidating/refetching after completion to keep list + badges consistent. Verify the component's usage instructions before implementing."
+          "description": "Remove imports and route registrations for LanguagesPage and NotificationsPage, and ensure the route tree no longer includes '/languages' or '/notifications' while keeping all other routes unchanged."
         },
         {
-          "path": "frontend/src/components/goals/GoalCard.tsx",
-          "operation": "modify",
-          "description": "Add a visible checkbox control on each goal card to toggle completed/not completed using the new toggle hook; ensure checkbox interactions stop propagation so they do not trigger navigation. Add touch swipe/slide handling (horizontal gesture) that triggers the same toggle (or reveals a toggle action) and prevent the gesture from causing navigation; show an English error message state on mutation failure and revert any optimistic UI. Verify the component's usage instructions before implementing."
+          "path": "frontend/src/pages/LanguagesPage.tsx",
+          "operation": "delete",
+          "description": "Delete the placeholder Languages page so it cannot be rendered by any remaining navigation or accidental imports."
+        },
+        {
+          "path": "frontend/src/pages/NotificationsPage.tsx",
+          "operation": "delete",
+          "description": "Delete the placeholder Notifications page so it cannot be rendered by any remaining navigation or accidental imports."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Add a visible '+' control on the goals dashboard that navigates to the existing '/create' goal creation flow.",
+      "acceptanceCriteria": [
+        "A '+' (plus) control is visible from the goals dashboard experience and is usable on mobile.",
+        "Activating the '+' control navigates to '/create'.",
+        "The existing Create Goal page and goal creation flow remain unchanged and continue to work."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/goals/AddGoalButton.tsx",
+          "operation": "create",
+          "description": "Create a reusable '+' add-goal control (e.g., a compact icon button or mobile-friendly floating action button) that navigates to '/create' when activated, using existing routing utilities and existing UI primitives (do not modify anything under frontend/src/components/ui)."
         },
         {
           "path": "frontend/src/pages/GoalsDashboardPage.tsx",
           "operation": "modify",
-          "description": "Ensure the goals list view remains usable with the new inline completion interactions (e.g., confirm card click-to-open still works outside the checkbox/gesture area, and list state refresh correctly reflects status changes after toggles). Verify the component's usage instructions before implementing."
+          "description": "Render the new AddGoalButton on the goals dashboard so it is clearly discoverable on mobile (including when the list is non-empty), and wire it to navigate to '/create' without changing the existing create-goal flow."
         }
       ]
     }

@@ -1,18 +1,18 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-14T01:07:53.864Z",
+  "generatedAt": "2026-02-14T08:58:37.713Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 2,
+    "total": 3,
+    "implemented": 3,
     "items": [
       {
-        "id": "REQ-4",
-        "summary": "Add a Home button (house icon) to the mobile bottom navigation that routes to the homepage ('/'), and ensure it uses the same active highlighting behavior as other bottom-nav items.",
+        "id": "REQ-1",
+        "summary": "Remove the Languages and Notifications settings from the app UI by deleting their entries from the mobile bottom navigation and ensuring the bottom nav layout remains correct after removal (no empty columns or misalignment).",
         "status": "implemented",
         "plannedFiles": [
           "frontend/src/components/app/AppBottomNav.tsx"
@@ -22,34 +22,46 @@
         ]
       },
       {
-        "id": "REQ-5",
-        "summary": "Implement the requested interaction for goals: users must be able to either swipe/slide a goal card or use a checkbox control to mark a goal as completed/not completed directly from the goals list, without needing to open the goal detail page.",
+        "id": "REQ-2",
+        "summary": "Remove the Languages and Notifications routes so they are no longer accessible within the app navigation (i.e., the router does not register '/languages' or '/notifications').",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/hooks/useQueries.ts",
-          "frontend/src/components/goals/GoalCard.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/LanguagesPage.tsx",
+          "frontend/src/pages/NotificationsPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/pages/LanguagesPage.tsx",
+          "frontend/src/pages/NotificationsPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Add a clearly discoverable '+' button to let users add goals, which navigates to the existing Create Goal flow at route '/create'.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/goals/AddGoalButton.tsx",
           "frontend/src/pages/GoalsDashboardPage.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/hooks/useQueries.ts",
-          "frontend/src/components/goals/GoalCard.tsx"
+          "frontend/src/components/goals/AddGoalButton.tsx",
+          "frontend/src/pages/GoalsDashboardPage.tsx"
         ]
       }
     ]
   },
   "changedFiles": [
-    "backend/main.mo",
     "build-request.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/backend.d.ts",
-    "frontend/src/backend.ts",
+    "frontend/src/App.tsx",
     "frontend/src/components/app/AppBottomNav.tsx",
-    "frontend/src/components/goals/GoalCard.tsx",
-    "frontend/src/declarations/backend.did.d.ts",
-    "frontend/src/declarations/backend.did.js",
-    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/components/goals/AddGoalButton.tsx",
+    "frontend/src/pages/GoalsDashboardPage.tsx",
+    "frontend/src/pages/LanguagesPage.tsx",
+    "frontend/src/pages/NotificationsPage.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

@@ -1,5 +1,5 @@
 import { Link, useRouterState } from '@tanstack/react-router';
-import { Settings, Languages, User, Bell, BarChart3, TrendingUp, Home } from 'lucide-react';
+import { Settings, User, BarChart3, TrendingUp, Home } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export function AppBottomNav() {
@@ -9,16 +9,14 @@ export function AppBottomNav() {
   const navItems = [
     { path: '/', label: 'Home', icon: Home },
     { path: '/settings', label: 'Settings', icon: Settings },
-    { path: '/languages', label: 'Languages', icon: Languages },
     { path: '/profile', label: 'Profile', icon: User },
-    { path: '/notifications', label: 'Notifications', icon: Bell },
     { path: '/stats', label: 'Statistics', icon: BarChart3 },
     { path: '/averages', label: 'Averages', icon: TrendingUp },
   ];
 
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-card border-t border-border shadow-lg">
-      <div className="grid grid-cols-7 gap-0.5 px-1 py-2">
+      <div className="grid grid-cols-5 gap-0.5 px-1 py-2">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = currentPath === item.path;

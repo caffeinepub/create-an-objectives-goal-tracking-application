@@ -1,35 +1,51 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-14T01:07:53.861Z",
-  "summary": "REQ-4 appears implemented by adding a Home item to the mobile bottom navigation with active-route styling. REQ-5 adds a visible checkbox and touch swipe gesture on goal cards to toggle completion with error toasts; however, the diff shows the toggle uses new dedicated completion endpoints rather than the existing update mutation as specified.",
-  "missing_requirements": [
-    {
-      "id": "REQ-5",
-      "requirement": "Toggling completion from the goals list should update the goal via the existing update mutation (updateGoal) and then refresh/reflect updated status.",
-      "reason": "The new completion toggle hook calls actor.setGoalCompleted / actor.setGoalNotCompleted rather than using the existing updateGoal mutation path, so the requirement to use the existing update mutation is not met based on the diff evidence.",
-      "evidence": [
-        "frontend/src/hooks/useQueries.ts",
-        "frontend/src/components/goals/GoalCard.tsx"
-      ]
-    }
-  ],
+  "generatedAt": "2026-02-14T08:58:37.711Z",
+  "summary": "REQ-1/2/3 appear implemented: Languages/Notifications removed from mobile bottom nav with updated grid layout; '/languages' and '/notifications' routes removed from router; a visible floating '+' add-goal button was added on the goals dashboard and navigates to '/create'. Diff also suggests several unrelated UI/behavior changes (goal completion toggling/swipe, styling/theme updates, extra validation/time utilities) that were not requested.",
+  "missing_requirements": [],
   "hallucinated_features": [
     {
-      "description": "Introduced a new completion-toggle API path (actor.setGoalCompleted / actor.setGoalNotCompleted) instead of using the existing updateGoal mutation.",
-      "reason": "The BuildRequest requires using the existing update mutation for completion toggling; adding and relying on separate completion endpoints is not requested.",
+      "description": "Added goal completion toggling behavior with optimistic updates (new React Query hook).",
+      "reason": "BuildRequest only asked to remove Languages/Notifications settings/routes and add a '+' button to navigate to '/create'; it did not request new goal completion toggle behavior or new hooks.",
       "evidence": [
-        "frontend/src/hooks/useQueries.ts"
+        "frontend-file-summaries.txt (\"frontend/src/hooks/useQueries.ts\": \"... and a new useToggleGoalCompletion hook with optimistic UI updates and error rollback ...\")",
+        "frontend-file-summaries.txt (\"frontend/src/components/goals/GoalCard.tsx\": \"... swipe gestures for completion toggling with optimistic UI ...\")"
+      ]
+    },
+    {
+      "description": "Added swipe gestures on goal cards for completion toggling.",
+      "reason": "Not requested by any requirement; could be considered scope creep/risk to existing goal dashboard behavior.",
+      "evidence": [
+        "frontend-file-summaries.txt (\"frontend/src/components/goals/GoalCard.tsx\": \"... horizontal swipe gestures for completion toggling ...\")"
+      ]
+    },
+    {
+      "description": "Changed global styling/theme (new OKLCH color palette) and Tailwind configuration updates (fonts, tokens, shadows, animations).",
+      "reason": "No requirements mention visual redesign or theme changes; only navigation/route removal and adding a '+' control were requested.",
+      "evidence": [
+        "frontend-file-summaries.txt (\"frontend/src/index.css\": \"Global styles with warm earthy OKLCH color palette ...\")",
+        "frontend-file-summaries.txt (\"frontend/tailwind.config.js\": \"Tailwind configuration with Inter font family, extended color tokens, custom shadows, and animation keyframes.\")"
+      ]
+    },
+    {
+      "description": "Added/changed client-side validation utilities and time conversion/formatting utilities.",
+      "reason": "Not requested; BuildRequest explicitly scoped to removing settings/routes and adding a '+' goal creation entry point.",
+      "evidence": [
+        "frontend-file-summaries.txt (\"frontend/src/lib/goals/validation.ts\": \"Client-side validation functions ...\")",
+        "frontend-file-summaries.txt (\"frontend/src/lib/time.ts\": \"Utility functions for converting between backend Time ... plus formatting helpers.\")"
       ]
     }
   ],
-  "confidence": 0.62,
+  "confidence": 0.74,
   "changed_files": [
-    "backend/main.mo",
     "frontend-file-summaries.txt",
+    "frontend/src/App.tsx",
     "frontend/src/components/app/AppBottomNav.tsx",
-    "frontend/src/components/goals/GoalCard.tsx",
-    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/components/goals/AddGoalButton.tsx",
+    "frontend/src/pages/GoalsDashboardPage.tsx",
+    "frontend/src/pages/LanguagesPage.tsx",
+    "frontend/src/pages/NotificationsPage.tsx",
     "project_state.json"
   ]
 }

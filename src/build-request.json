@@ -1,69 +1,75 @@
 {
   "kind": "build_request",
-  "title": "Add Home button to bottom navigation and enable swipe/checkbox interactions on goals",
+  "title": "Remove Languages/Notifications settings and add a '+' goal creation button",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-4",
-      "text": "Add a Home button (house icon) to the mobile bottom navigation that routes to the homepage ('/'), and ensure it uses the same active highlighting behavior as other bottom-nav items.",
+      "id": "REQ-1",
+      "text": "Remove the Languages and Notifications settings from the app UI by deleting their entries from the mobile bottom navigation and ensuring the bottom nav layout remains correct after removal (no empty columns or misalignment).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-5"
+          "msg-4"
         ],
         "quotes": [
-          "Faut qu’il y est un bouton maison pour la page d’accueil"
+          "Et enlève réglage langues et notifications"
         ]
       },
       "acceptanceCriteria": [
-        "On mobile, the bottom navigation shows a Home item that navigates to '/' when tapped.",
-        "When the current route is '/', the Home item is styled as the active item (same active styling as other items).",
-        "The bottom navigation remains a 1-row layout and does not overflow or wrap on common mobile widths."
+        "On mobile, the bottom navigation no longer shows 'Languages' or 'Notifications'.",
+        "The bottom navigation layout adapts to the new number of items (no 7-column grid with empty space; spacing and touch targets remain consistent).",
+        "No other navigation items are removed or renamed."
       ]
     },
     {
-      "id": "REQ-5",
-      "text": "Implement the requested interaction for goals: users must be able to either swipe/slide a goal card or use a checkbox control to mark a goal as completed/not completed directly from the goals list, without needing to open the goal detail page.",
-      "target": "both",
+      "id": "REQ-2",
+      "text": "Remove the Languages and Notifications routes so they are no longer accessible within the app navigation (i.e., the router does not register '/languages' or '/notifications').",
+      "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-5"
+          "msg-4"
         ],
         "quotes": [
-          "et oublie pas le truc de faire glisser ou de cocher"
+          "Et enlève réglage langues et notifications"
         ]
       },
       "acceptanceCriteria": [
-        "Each goal in the goals dashboard list provides a visible checkbox (or equivalent check control) that toggles between Completed and Not Completed states.",
-        "Toggling via the checkbox updates the goal via the existing update mutation and refreshes the goals list state (completed badge/status updates accordingly).",
-        "On touch devices, each goal card supports a horizontal swipe/slide gesture that triggers the same complete/not-complete toggle (or reveals an action that performs the toggle).",
-        "Using the checkbox or swipe action does not trigger navigation into the goal detail page (card click-to-open remains available elsewhere on the card).",
-        "Error handling is present: if the update fails, the UI shows an error state/message and reverts the optimistic UI if applied."
+        "The router no longer defines routes for '/languages' and '/notifications'.",
+        "Navigating to '/languages' or '/notifications' via manual URL entry does not render the removed placeholder pages (it should fall back to the router's default not-found/route-missing behavior).",
+        "No other routes are impacted (e.g., '/', '/create', '/stats', '/settings', '/profile', '/averages' continue to work)."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add a clearly discoverable '+' button to let users add goals, which navigates to the existing Create Goal flow at route '/create'.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "mes un + pour ajouter les objectifs"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A '+' (plus) control is visible from the goals dashboard experience and is usable on mobile.",
+        "Activating the '+' control navigates to '/create'.",
+        "The existing Create Goal page and goal creation flow remain unchanged and continue to work."
       ]
     }
   ],
   "constraints": [
-    "Use English for any user-facing UI text that is added/changed.",
-    "Do not edit frontend immutable paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui.",
-    "Backend must remain a single Motoko actor in backend/main.mo; only add migration logic if state schema changes (avoid schema changes for this request)."
+    "Do not modify files under frontend/src/components/ui (read-only UI components).",
+    "Do not modify frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, or frontend/src/main.tsx (immutable paths).",
+    "Keep the backend as a single Motoko actor; no backend changes are required for this request."
   ],
   "nonGoals": [
-    "Do not implement drag-and-drop reordering of goals across the grid/list (only swipe/slide interaction for quick actions).",
-    "Do not add new authentication providers (Internet Identity remains the only auth).",
-    "Do not add new backend entities or external storage/databases."
+    "Implementing actual language selection (i18n) features.",
+    "Implementing real notification preferences, scheduling, or delivery.",
+    "Adding new backend data models for settings."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
-  },
-  "userProfileUpdate": {
-    "goalsToAdd": [],
-    "goalsToRemove": [],
-    "preferencesToAdd": [],
-    "preferencesToRemove": [],
-    "miscToAdd": [],
-    "miscToRemove": [],
-    "fieldsToSet": {},
-    "fieldsToDelete": []
   }
 }

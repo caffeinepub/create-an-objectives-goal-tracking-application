@@ -3,6 +3,7 @@ import { useGetAllGoals } from '../hooks/useQueries';
 import { GoalCard } from '../components/goals/GoalCard';
 import { LoadingState } from '../components/state/LoadingState';
 import { EmptyGoalsState } from '../components/state/EmptyGoalsState';
+import { AddGoalButton } from '../components/goals/AddGoalButton';
 import { GoalStatus } from '../backend';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -80,6 +81,8 @@ export function GoalsDashboardPage() {
           ))}
         </div>
       )}
+
+      <AddGoalButton />
     </div>
   );
 }

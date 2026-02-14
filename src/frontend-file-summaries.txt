@@ -1,5 +1,5 @@
 {
-  "frontend/src/App.tsx": "Main application component with TanStack Router setup including routes for dashboard, create, detail, stats, settings, languages, profile, notifications, and averages pages, with authentication flow and profile setup modal trigger using a single Outlet in the Layout component.",
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup including routes for dashboard, create, detail, stats, settings, profile, and averages pages (Languages and Notifications routes removed), with authentication flow and profile setup modal trigger using a single Outlet in the Layout component.",
   "frontend/src/components/app/AppShell.tsx": "Shared application shell component with header (logo, navigation for authenticated users, auth controls), main content area with conditional bottom padding for authenticated users, bottom navigation for mobile, and footer with attribution.",
   "frontend/src/components/auth/AuthControls.tsx": "Authentication controls component displaying user name and sign in/out button with loading states, relying on React Query cache invalidation for profile updates.",
   "frontend/src/components/profile/ProfileSetupModal.tsx": "Modal dialog for first-time user profile setup, collecting display name after Internet Identity login.",
@@ -7,7 +7,7 @@
   "frontend/src/components/goals/GoalForm.tsx": "Reusable form component for creating and editing goals with validation, supporting title, description, status, target date, and progress fields.",
   "frontend/src/components/state/LoadingState.tsx": "Loading skeleton components for list and detail views using shadcn/ui Skeleton primitives.",
   "frontend/src/components/state/EmptyGoalsState.tsx": "Empty state component with illustration and call-to-action button when user has no goals.",
-  "frontend/src/pages/GoalsDashboardPage.tsx": "Main dashboard page displaying user's goals with filter buttons (All, Not Started, In Progress, Completed) and grid layout, supporting inline completion interactions via checkboxes and swipe gestures on goal cards.",
+  "frontend/src/pages/GoalsDashboardPage.tsx": "Main dashboard page displaying user's goals with filter buttons (All, Not Started, In Progress, Completed) and grid layout, supporting inline completion interactions via checkboxes and swipe gestures on goal cards, with a floating add goal button.",
   "frontend/src/pages/CreateGoalPage.tsx": "Page for creating new goals using GoalForm component with navigation back to dashboard on success.",
   "frontend/src/pages/GoalDetailPage.tsx": "Goal detail and edit page with update form, delete confirmation dialog, and error handling.",
   "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations including user profile management, CRUD operations for goals, and a new useToggleGoalCompletion hook with optimistic UI updates and error rollback for quick goal completion toggling.",
@@ -19,9 +19,10 @@
   "frontend/src/components/app/AppNav.tsx": "Navigation component for authenticated users displaying links to My Goals, New Goal, Stats, and Settings with active route styling using TanStack Router.",
   "frontend/src/pages/StatsPage.tsx": "Statistics page displaying goal analytics computed from user's goals including total count, status breakdowns, and average progress with loading and error states.",
   "frontend/src/pages/SettingsPage.tsx": "Settings page for viewing and updating user profile name with client-side validation, loading/saving states, and success/error feedback.",
-  "frontend/src/components/app/AppBottomNav.tsx": "Mobile-only sticky bottom navigation component displaying seven navigation items (Home, Settings, Languages, Profile, Notifications, Statistics, Averages) with icons and labels in a single-row grid layout, using TanStack Router for client-side navigation and active route highlighting.",
+  "frontend/src/components/app/AppBottomNav.tsx": "Mobile-only sticky bottom navigation component displaying five navigation items (Home, Settings, Profile, Statistics, Averages) with icons and labels in a single-row grid layout, using TanStack Router for client-side navigation and active route highlighting.",
   "frontend/src/pages/LanguagesPage.tsx": "Languages page scaffold displaying a card with placeholder content for future language selection functionality.",
   "frontend/src/pages/ProfilePage.tsx": "Profile page displaying user's display name, principal ID, and account status with loading and error states.",
   "frontend/src/pages/NotificationsPage.tsx": "Notifications page scaffold displaying a card with placeholder content for future notification settings functionality.",
-  "frontend/src/pages/AveragesPage.tsx": "Averages page displaying average progress and completion rate across all goals with visual progress bars and summary statistics."
+  "frontend/src/pages/AveragesPage.tsx": "Averages page displaying average progress and completion rate across all goals with visual progress bars and summary statistics.",
+  "frontend/src/components/goals/AddGoalButton.tsx": "Floating action button component with a plus icon that navigates to the create goal page when clicked, positioned at the bottom-right corner with mobile-friendly spacing."
 }
