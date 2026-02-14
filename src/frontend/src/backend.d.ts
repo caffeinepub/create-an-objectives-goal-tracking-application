@@ -43,5 +43,7 @@ export interface backendInterface {
     getUserProfile(user: Principal): Promise<UserProfile | null>;
     isCallerAdmin(): Promise<boolean>;
     saveCallerUserProfile(profile: UserProfile): Promise<void>;
+    setGoalCompleted(goalId: GoalId): Promise<void>;
+    setGoalNotCompleted(goalId: GoalId): Promise<void>;
     updateGoal(goalId: GoalId, title: string, description: string | null, status: GoalStatus, targetDate: Time | null, progress: bigint): Promise<void>;
 }

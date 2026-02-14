@@ -128,3 +128,53 @@ export function useDeleteGoal() {
     },
   });
 }
+
+export function useToggleGoalCompletion() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({ goalId, isCompleted }: { goalId: bigint; isCompleted: boolean }) => {
+      if (!actor) throw new Error('Actor not available');
+      if (isCompleted) {
+        return actor.setGoalNotCompleted(goalId);
+      } else {
+        return actor.setGoalCompleted(goalId);
+      }
+    },
+    onMutate: async ({ goalId, isCompleted }) => {
+      // Cancel outgoing refetches
+      await queryClient.cancelQueries({ queryKey: ['goals'] });
+      
+      // Snapshot the previous value
+      const previousGoals = queryClient.getQueryData<Goal[]>(['goals']);
+      
+      // Optimistically update to the new value
+      if (previousGoals) {
+        queryClient.setQueryData<Goal[]>(['goals'], (old) =>
+          old?.map((goal) =>
+            goal.id === goalId
+              ? {
+                  ...goal,
+                  status: isCompleted ? GoalStatus.inProgress : GoalStatus.completed,
+                  progress: isCompleted ? BigInt(99) : BigInt(100),
+                }
+              : goal
+          ) || []
+        );
+      }
+      
+      return { previousGoals };
+    },
+    onError: (err, variables, context) => {
+      // Rollback on error
+      if (context?.previousGoals) {
+        queryClient.setQueryData(['goals'], context.previousGoals);
+      }
+    },
+    onSettled: () => {
+      // Always refetch after error or success
+      queryClient.invalidateQueries({ queryKey: ['goals'] });
+    },
+  });
+}

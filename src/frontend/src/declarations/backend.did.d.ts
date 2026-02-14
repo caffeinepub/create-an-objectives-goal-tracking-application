@@ -41,6 +41,8 @@ export interface _SERVICE {
   'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
   'isCallerAdmin' : ActorMethod<[], boolean>,
   'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
+  'setGoalCompleted' : ActorMethod<[GoalId], undefined>,
+  'setGoalNotCompleted' : ActorMethod<[GoalId], undefined>,
   'updateGoal' : ActorMethod<
     [GoalId, string, [] | [string], GoalStatus, [] | [Time], bigint],
     undefined

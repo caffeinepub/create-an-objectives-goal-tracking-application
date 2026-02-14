@@ -164,4 +164,50 @@ actor {
       };
     };
   };
+
+  public shared ({ caller }) func setGoalCompleted(goalId : GoalId) : async () {
+    if (not AccessControl.hasPermission(accessControlState, caller, #user)) {
+      Runtime.trap("Unauthorized: Only users can set goal completed/not completed");
+    };
+
+    switch (userGoals.get(caller)) {
+      case (null) { Runtime.trap("Goals not found for user") };
+      case (?goals) {
+        switch (goals.get(goalId)) {
+          case (null) { Runtime.trap("Goal not found") };
+          case (?existingGoal) {
+            let updatedGoal : Goal = {
+              existingGoal with
+              status = #completed;
+              progress = 100;
+            };
+            goals.add(goalId, updatedGoal);
+          };
+        };
+      };
+    };
+  };
+
+  public shared ({ caller }) func setGoalNotCompleted(goalId : GoalId) : async () {
+    if (not AccessControl.hasPermission(accessControlState, caller, #user)) {
+      Runtime.trap("Unauthorized: Only users can set goal not completed");
+    };
+
+    switch (userGoals.get(caller)) {
+      case (null) { Runtime.trap("Goals not found for user") };
+      case (?goals) {
+        switch (goals.get(goalId)) {
+          case (null) { Runtime.trap("Goal not found") };
+          case (?existingGoal) {
+            let updatedGoal : Goal = {
+              existingGoal with
+              status = #inProgress;
+              progress = 99;
+            };
+            goals.add(goalId, updatedGoal);
+          };
+        };
+      };
+    };
+  };
 };

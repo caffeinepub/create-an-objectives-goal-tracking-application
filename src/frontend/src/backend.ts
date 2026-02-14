@@ -126,6 +126,8 @@ export interface backendInterface {
     getUserProfile(user: Principal): Promise<UserProfile | null>;
     isCallerAdmin(): Promise<boolean>;
     saveCallerUserProfile(profile: UserProfile): Promise<void>;
+    setGoalCompleted(goalId: GoalId): Promise<void>;
+    setGoalNotCompleted(goalId: GoalId): Promise<void>;
     updateGoal(goalId: GoalId, title: string, description: string | null, status: GoalStatus, targetDate: Time | null, progress: bigint): Promise<void>;
 }
 import type { Goal as _Goal, GoalId as _GoalId, GoalStatus as _GoalStatus, Time as _Time, UserProfile as _UserProfile, UserRole as _UserRole } from "./declarations/backend.did.d.ts";
@@ -282,6 +284,34 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.saveCallerUserProfile(arg0);
+            return result;
+        }
+    }
+    async setGoalCompleted(arg0: GoalId): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.setGoalCompleted(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.setGoalCompleted(arg0);
+            return result;
+        }
+    }
+    async setGoalNotCompleted(arg0: GoalId): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.setGoalNotCompleted(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.setGoalNotCompleted(arg0);
             return result;
         }
     }

@@ -1,90 +1,49 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Persistent authenticated bottom navigation + new routes/pages",
+  "title": "Home bottom-nav item and quick complete interactions for goals list",
   "requirements": [
     {
-      "id": "REQ-1",
-      "summary": "Add a persistent sticky bottom navigation for authenticated users with links to Settings, Languages, Profile, Notifications, Statistics, and Averages, including active-route highlighting.",
+      "id": "REQ-4",
+      "summary": "Add a Home (house icon) item to the mobile bottom navigation that routes to '/' and uses the existing active highlighting behavior without wrapping.",
       "acceptanceCriteria": [
-        "When the user is authenticated, a bottom navigation bar is visible on all app pages.",
-        "Bottom navigation includes items labeled in English: \"Settings\", \"Languages\", \"Profile\", \"Notifications\", \"Statistics\", and \"Averages\".",
-        "The currently active destination is visually highlighted based on the current route pathname.",
-        "Navigation works without full page reload and uses the existing TanStack Router setup.",
-        "Unauthenticated users do not see the bottom navigation."
+        "On mobile, the bottom navigation shows a Home item that navigates to '/' when tapped.",
+        "When the current route is '/', the Home item is styled as the active item (same active styling as other items).",
+        "The bottom navigation remains a 1-row layout and does not overflow or wrap on common mobile widths."
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/app/AppBottomNav.tsx",
-          "operation": "create",
-          "description": "Create a new authenticated-only, sticky bottom navigation component using TanStack Router Link + useRouterState to render the required labeled destinations and apply active-route styling based on the current pathname. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/components/app/AppShell.tsx",
           "operation": "modify",
-          "description": "Render the new AppBottomNav only when the user is authenticated, ensuring it is persistent across all routed pages (including existing goals, create, detail, stats, settings)."
+          "description": "Add a Home nav item (use lucide-react Home/house icon) that links to '/' and participates in the same active highlighting logic; update the grid column count and sizing (e.g., grid-cols-7 + label/icon sizing) to keep a single-row mobile layout without wrapping/overflow. Verify the component's usage instructions before implementing."
         }
       ]
     },
     {
-      "id": "REQ-2",
-      "summary": "Add routes and scaffold pages for Languages, Profile, Notifications, and Averages and wire them to the bottom navigation.",
+      "id": "REQ-5",
+      "summary": "Enable completing/uncompleting goals directly from the goals list via a visible checkbox and a horizontal swipe gesture, using the existing goal update mutation with optimistic UI + error rollback and without forcing navigation to the detail page.",
       "acceptanceCriteria": [
-        "New routes exist for Languages, Profile, Notifications, and Averages pages (in addition to existing /settings and /stats).",
-        "Each new page renders a clear page title (English) matching the bottom-nav label.",
-        "Each new page is accessible by clicking its bottom navigation item.",
-        "Existing routes (/settings and /stats) continue to work as before."
+        "Each goal in the goals dashboard list provides a visible checkbox (or equivalent check control) that toggles between Completed and Not Completed states.",
+        "Toggling via the checkbox updates the goal via the existing update mutation and refreshes the goals list state (completed badge/status updates accordingly).",
+        "On touch devices, each goal card supports a horizontal swipe/slide gesture that triggers the same complete/not-complete toggle (or reveals an action that performs the toggle).",
+        "Using the checkbox or swipe action does not trigger navigation into the goal detail page (card click-to-open remains available elsewhere on the card).",
+        "Error handling is present: if the update fails, the UI shows an error state/message and reverts the optimistic UI if applied."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/LanguagesPage.tsx",
-          "operation": "create",
-          "description": "Add a Languages page UI scaffold that renders a clear English title (\"Languages\") and placeholder content (no i18n behavior)."
-        },
-        {
-          "path": "frontend/src/pages/ProfilePage.tsx",
-          "operation": "create",
-          "description": "Add a Profile page UI scaffold that renders a clear English title (\"Profile\") and basic placeholder content (do not introduce new auth flows)."
-        },
-        {
-          "path": "frontend/src/pages/NotificationsPage.tsx",
-          "operation": "create",
-          "description": "Add a Notifications page UI scaffold that renders a clear English title (\"Notifications\") and placeholder content (no delivery/real-time implementation)."
-        },
-        {
-          "path": "frontend/src/pages/AveragesPage.tsx",
-          "operation": "create",
-          "description": "Add an Averages page UI scaffold that renders a clear English title (\"Averages\") and simple placeholder/summary content (no changes to existing /stats behavior required)."
-        },
-        {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/src/hooks/useQueries.ts",
           "operation": "modify",
-          "description": "Register new TanStack Router routes for /languages, /profile, /notifications, and /averages, importing the new pages and adding them to the route tree while keeping existing /settings and /stats routes unchanged."
+          "description": "Add a dedicated goal completion toggle mutation hook that uses the existing updateGoal mutation path (i.e., updates only the status while preserving the goal’s other fields), includes optimistic cache updates for the ['goals'] query, and rolls back on failure while invalidating/refetching after completion to keep list + badges consistent. Verify the component's usage instructions before implementing."
         },
         {
-          "path": "frontend/src/components/app/AppBottomNav.tsx",
+          "path": "frontend/src/components/goals/GoalCard.tsx",
           "operation": "modify",
-          "description": "Wire bottom-nav items to the correct paths for Settings (/settings), Languages (/languages), Profile (/profile), Notifications (/notifications), Statistics (/stats), and Averages (/averages), ensuring each click navigates client-side without full reload. Verify the component's usage instructions before implementing."
-        }
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "summary": "Adjust layout spacing to prevent content from being overlapped by the sticky bottom navigation.",
-      "acceptanceCriteria": [
-        "On all pages, the main content area has sufficient bottom padding/margin so the bottom navigation does not overlap interactive content.",
-        "This is verified on short pages (e.g., Settings) and long pages (e.g., Goals list) with scrolling."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/app/AppShell.tsx",
-          "operation": "modify",
-          "description": "Update the main content container styling to include conditional bottom padding/margin when authenticated so interactive content and scroll areas are not hidden behind the sticky bottom navigation."
+          "description": "Add a visible checkbox control on each goal card to toggle completed/not completed using the new toggle hook; ensure checkbox interactions stop propagation so they do not trigger navigation. Add touch swipe/slide handling (horizontal gesture) that triggers the same toggle (or reveals a toggle action) and prevent the gesture from causing navigation; show an English error message state on mutation failure and revert any optimistic UI. Verify the component's usage instructions before implementing."
         },
         {
-          "path": "frontend/src/components/app/AppBottomNav.tsx",
+          "path": "frontend/src/pages/GoalsDashboardPage.tsx",
           "operation": "modify",
-          "description": "Ensure the bottom navigation uses fixed/sticky positioning at the bottom of the viewport with appropriate height so the AppShell can reserve space reliably. Verify the component's usage instructions before implementing."
+          "description": "Ensure the goals list view remains usable with the new inline completion interactions (e.g., confirm card click-to-open still works outside the checkbox/gesture area, and list state refresh correctly reflects status changes after toggles). Verify the component's usage instructions before implementing."
         }
       ]
     }

@@ -1,76 +1,55 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-14T00:59:14.813Z",
+  "generatedAt": "2026-02-14T01:07:53.864Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 3,
-    "implemented": 3,
+    "total": 2,
+    "implemented": 2,
     "items": [
       {
-        "id": "REQ-1",
-        "summary": "Add a persistent bottom navigation bar (sticky at the bottom of the viewport) for authenticated users that provides one-tap navigation to: Settings, Languages, Profile, Notifications, Statistics, and Averages.",
+        "id": "REQ-4",
+        "summary": "Add a Home button (house icon) to the mobile bottom navigation that routes to the homepage ('/'), and ensure it uses the same active highlighting behavior as other bottom-nav items.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/app/AppBottomNav.tsx",
-          "frontend/src/components/app/AppShell.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/app/AppBottomNav.tsx",
-          "frontend/src/components/app/AppShell.tsx"
-        ]
-      },
-      {
-        "id": "REQ-2",
-        "summary": "Add frontend routes and pages for Languages, Profile, Notifications, and Averages, and ensure each is reachable from the new bottom navigation bar.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/LanguagesPage.tsx",
-          "frontend/src/pages/ProfilePage.tsx",
-          "frontend/src/pages/NotificationsPage.tsx",
-          "frontend/src/pages/AveragesPage.tsx",
-          "frontend/src/App.tsx",
           "frontend/src/components/app/AppBottomNav.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/pages/LanguagesPage.tsx",
-          "frontend/src/pages/ProfilePage.tsx",
-          "frontend/src/pages/NotificationsPage.tsx",
-          "frontend/src/pages/AveragesPage.tsx",
-          "frontend/src/App.tsx",
           "frontend/src/components/app/AppBottomNav.tsx"
         ]
       },
       {
-        "id": "REQ-3",
-        "summary": "Update the layout spacing so page content is not hidden behind the new sticky bottom navigation bar.",
+        "id": "REQ-5",
+        "summary": "Implement the requested interaction for goals: users must be able to either swipe/slide a goal card or use a checkbox control to mark a goal as completed/not completed directly from the goals list, without needing to open the goal detail page.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/app/AppShell.tsx",
-          "frontend/src/components/app/AppBottomNav.tsx"
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/components/goals/GoalCard.tsx",
+          "frontend/src/pages/GoalsDashboardPage.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/app/AppShell.tsx",
-          "frontend/src/components/app/AppBottomNav.tsx"
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/components/goals/GoalCard.tsx"
         ]
       }
     ]
   },
   "changedFiles": [
+    "backend/main.mo",
     "build-request.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
     "frontend/src/components/app/AppBottomNav.tsx",
-    "frontend/src/components/app/AppShell.tsx",
-    "frontend/src/pages/AveragesPage.tsx",
-    "frontend/src/pages/LanguagesPage.tsx",
-    "frontend/src/pages/NotificationsPage.tsx",
-    "frontend/src/pages/ProfilePage.tsx",
+    "frontend/src/components/goals/GoalCard.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useQueries.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

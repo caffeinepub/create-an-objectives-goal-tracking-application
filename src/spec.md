@@ -1,12 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Add a persistent bottom navigation for authenticated users to quickly access Settings, Languages, Profile, Notifications, Statistics, and Averages.
+**Goal:** Improve mobile navigation and allow quickly toggling goal completion directly from the goals list.
 
 **Planned changes:**
-- Add a sticky bottom navigation bar visible on all pages when the user is authenticated, with items: Settings, Languages, Profile, Notifications, Statistics, and Averages.
-- Highlight the active bottom-nav item based on the current TanStack Router route/pathname and navigate client-side without full page reloads.
-- Add new frontend routes/pages for Languages, Profile, Notifications, and Averages (scaffold pages with clear English titles), keeping existing /settings and /stats unchanged.
-- Adjust global/layout spacing so page content is not hidden behind the sticky bottom navigation (ensure sufficient bottom padding/margin on short and long pages).
+- Add a Home (house icon) item to the mobile bottom navigation that routes to `/` and follows the same active highlighting as other items.
+- Ensure the bottom navigation stays a single-row layout without overflow/wrapping on common mobile widths.
+- Add a visible checkbox control on each goal card in the goals dashboard list to toggle Completed/Not Completed using the existing update mutation, updating list state accordingly.
+- Add a horizontal swipe/slide gesture on touch devices for each goal card to trigger (or reveal) the same completion toggle action without navigating into the goal detail view.
+- Add UI error handling for failed completion updates (show an error and revert any optimistic UI changes).
 
-**User-visible outcome:** Authenticated users see a bottom navigation bar on every page and can one-tap navigate to Settings, Languages, Profile, Notifications, Statistics, and Averages without content being covered by the bar.
+**User-visible outcome:** On mobile, users can tap a Home button in the bottom nav to return to the homepage, and they can mark goals complete/incomplete from the goals list via a checkbox or swipe action without opening goal details.

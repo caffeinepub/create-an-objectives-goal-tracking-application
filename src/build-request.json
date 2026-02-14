@@ -1,77 +1,69 @@
 {
   "kind": "build_request",
-  "title": "Add bottom navigation for Settings, Languages, Profile, Notifications, and Statistics/Averages",
+  "title": "Add Home button to bottom navigation and enable swipe/checkbox interactions on goals",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-1",
-      "text": "Add a persistent bottom navigation bar (sticky at the bottom of the viewport) for authenticated users that provides one-tap navigation to: Settings, Languages, Profile, Notifications, Statistics, and Averages.",
+      "id": "REQ-4",
+      "text": "Add a Home button (house icon) to the mobile bottom navigation that routes to the homepage ('/'), and ensure it uses the same active highlighting behavior as other bottom-nav items.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-5"
         ],
         "quotes": [
-          "Je veux que tu mettes en bas les pages paramètre langues profils notifis , statistiques moyennes…"
+          "Faut qu’il y est un bouton maison pour la page d’accueil"
         ]
       },
       "acceptanceCriteria": [
-        "When the user is authenticated, a bottom navigation bar is visible on all app pages.",
-        "Bottom navigation includes items labeled in English: \"Settings\", \"Languages\", \"Profile\", \"Notifications\", \"Statistics\", and \"Averages\".",
-        "The currently active destination is visually highlighted based on the current route pathname.",
-        "Navigation works without full page reload and uses the existing TanStack Router setup.",
-        "Unauthenticated users do not see the bottom navigation."
+        "On mobile, the bottom navigation shows a Home item that navigates to '/' when tapped.",
+        "When the current route is '/', the Home item is styled as the active item (same active styling as other items).",
+        "The bottom navigation remains a 1-row layout and does not overflow or wrap on common mobile widths."
       ]
     },
     {
-      "id": "REQ-2",
-      "text": "Add frontend routes and pages for Languages, Profile, Notifications, and Averages, and ensure each is reachable from the new bottom navigation bar.",
-      "target": "frontend",
+      "id": "REQ-5",
+      "text": "Implement the requested interaction for goals: users must be able to either swipe/slide a goal card or use a checkbox control to mark a goal as completed/not completed directly from the goals list, without needing to open the goal detail page.",
+      "target": "both",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-5"
         ],
         "quotes": [
-          "Je veux que tu mettes en bas les pages paramètre langues profils notifis , statistiques moyennes…"
+          "et oublie pas le truc de faire glisser ou de cocher"
         ]
       },
       "acceptanceCriteria": [
-        "New routes exist for Languages, Profile, Notifications, and Averages pages (in addition to existing /settings and /stats).",
-        "Each new page renders a clear page title (English) matching the bottom-nav label.",
-        "Each new page is accessible by clicking its bottom navigation item.",
-        "Existing routes (/settings and /stats) continue to work as before."
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Update the layout spacing so page content is not hidden behind the new sticky bottom navigation bar.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "Je veux que tu mettes en bas les pages paramètre langues profils notifis , statistiques moyennes…"
-        ]
-      },
-      "acceptanceCriteria": [
-        "On all pages, the main content area has sufficient bottom padding/margin so the bottom navigation does not overlap interactive content.",
-        "This is verified on short pages (e.g., Settings) and long pages (e.g., Goals list) with scrolling."
+        "Each goal in the goals dashboard list provides a visible checkbox (or equivalent check control) that toggles between Completed and Not Completed states.",
+        "Toggling via the checkbox updates the goal via the existing update mutation and refreshes the goals list state (completed badge/status updates accordingly).",
+        "On touch devices, each goal card supports a horizontal swipe/slide gesture that triggers the same complete/not-complete toggle (or reveals an action that performs the toggle).",
+        "Using the checkbox or swipe action does not trigger navigation into the goal detail page (card click-to-open remains available elsewhere on the card).",
+        "Error handling is present: if the update fails, the UI shows an error state/message and reverts the optimistic UI if applied."
       ]
     }
   ],
   "constraints": [
-    "Do not modify files under frontend/src/components/ui (shadcn components must be composed, not edited).",
-    "Do not modify immutable hook files: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx.",
-    "Backend must remain a single Motoko actor (no additional services)."
+    "Use English for any user-facing UI text that is added/changed.",
+    "Do not edit frontend immutable paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui.",
+    "Backend must remain a single Motoko actor in backend/main.mo; only add migration logic if state schema changes (avoid schema changes for this request)."
   ],
   "nonGoals": [
-    "Implementing actual language switching/i18n behavior beyond adding a Languages page route and UI scaffold.",
-    "Implementing notification delivery (push/SMS/email) or real-time messaging.",
-    "Changing authentication provider (must remain Internet Identity)."
+    "Do not implement drag-and-drop reordering of goals across the grid/list (only swipe/slide interaction for quick actions).",
+    "Do not add new authentication providers (Internet Identity remains the only auth).",
+    "Do not add new backend entities or external storage/databases."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
   }
 }

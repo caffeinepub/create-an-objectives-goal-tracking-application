@@ -52,6 +52,8 @@ export const idlService = IDL.Service({
     ),
   'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
   'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+  'setGoalCompleted' : IDL.Func([GoalId], [], []),
+  'setGoalNotCompleted' : IDL.Func([GoalId], [], []),
   'updateGoal' : IDL.Func(
       [GoalId, IDL.Text, IDL.Opt(IDL.Text), GoalStatus, IDL.Opt(Time), IDL.Nat],
       [],
@@ -106,6 +108,8 @@ export const idlFactory = ({ IDL }) => {
       ),
     'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
     'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+    'setGoalCompleted' : IDL.Func([GoalId], [], []),
+    'setGoalNotCompleted' : IDL.Func([GoalId], [], []),
     'updateGoal' : IDL.Func(
         [
           GoalId,

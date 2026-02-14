@@ -1,44 +1,35 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-14T00:59:14.810Z",
-  "summary": "Implemented new bottom navigation component and added routes/pages for Languages, Profile, Notifications, and Averages. AppShell now conditionally renders the bottom nav for authenticated users and adds bottom padding to prevent overlap. One notable deviation: the bottom nav is hidden on medium+ viewports (mobile-only).",
+  "generatedAt": "2026-02-14T01:07:53.861Z",
+  "summary": "REQ-4 appears implemented by adding a Home item to the mobile bottom navigation with active-route styling. REQ-5 adds a visible checkbox and touch swipe gesture on goal cards to toggle completion with error toasts; however, the diff shows the toggle uses new dedicated completion endpoints rather than the existing update mutation as specified.",
   "missing_requirements": [
     {
-      "id": "REQ-1",
-      "requirement": "Bottom navigation bar is visible on all app pages for authenticated users.",
-      "reason": "The new bottom navigation is explicitly hidden on medium and larger screens via `md:hidden`, so it is not visible on all pages across all viewport sizes for authenticated users.",
+      "id": "REQ-5",
+      "requirement": "Toggling completion from the goals list should update the goal via the existing update mutation (updateGoal) and then refresh/reflect updated status.",
+      "reason": "The new completion toggle hook calls actor.setGoalCompleted / actor.setGoalNotCompleted rather than using the existing updateGoal mutation path, so the requirement to use the existing update mutation is not met based on the diff evidence.",
       "evidence": [
-        "frontend/src/components/app/AppBottomNav.tsx"
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/components/goals/GoalCard.tsx"
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "Bottom navigation is implemented as mobile-only (hidden on md+ viewports).",
-      "reason": "The BuildRequest did not specify limiting the bottom navigation to mobile; it asked for a persistent bottom navigation for authenticated users.",
+      "description": "Introduced a new completion-toggle API path (actor.setGoalCompleted / actor.setGoalNotCompleted) instead of using the existing updateGoal mutation.",
+      "reason": "The BuildRequest requires using the existing update mutation for completion toggling; adding and relying on separate completion endpoints is not requested.",
       "evidence": [
-        "frontend/src/components/app/AppBottomNav.tsx"
-      ]
-    },
-    {
-      "description": "Averages page computes and displays aggregate metrics from goals (average progress, completion rate) with loading/error/empty states.",
-      "reason": "REQ-2 only requested a page route and UI scaffold/title for Averages (explicitly non-goal to implement additional behavior beyond scaffold for Languages; Averages behavior was not requested).",
-      "evidence": [
-        "frontend/src/pages/AveragesPage.tsx"
+        "frontend/src/hooks/useQueries.ts"
       ]
     }
   ],
-  "confidence": 0.74,
+  "confidence": 0.62,
   "changed_files": [
+    "backend/main.mo",
     "frontend-file-summaries.txt",
-    "frontend/src/App.tsx",
     "frontend/src/components/app/AppBottomNav.tsx",
-    "frontend/src/components/app/AppShell.tsx",
-    "frontend/src/pages/AveragesPage.tsx",
-    "frontend/src/pages/LanguagesPage.tsx",
-    "frontend/src/pages/NotificationsPage.tsx",
-    "frontend/src/pages/ProfilePage.tsx",
+    "frontend/src/components/goals/GoalCard.tsx",
+    "frontend/src/hooks/useQueries.ts",
     "project_state.json"
   ]
 }

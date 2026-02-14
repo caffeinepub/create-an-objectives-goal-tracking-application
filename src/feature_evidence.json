@@ -2,11 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-a-persistent-bottom-navigation-bar-sticky-at-the-bottom-of-the-viewport-for-authenticated-users-that-provides-one-tap-navigation-to-settings-languages-profile-notifications-statistics-and-averages",
-      "featureTitle": "Add a persistent bottom navigation bar (sticky at the bottom of the viewport) for authenticated users that provides one-tap navigation to: Settings, Languages, Profile, Notifications, Statistics, and Averages.",
+      "featureId": "feature-add-a-home-button-house-icon-to-the-mobile-bottom-navigation-that-routes-to-the-homepage-and-ensure-it-uses-the-same-active-highlighting-behavior-as-other-bottom-nav-items",
+      "featureTitle": "Add a Home button (house icon) to the mobile bottom navigation that routes to the homepage ('/'), and ensure it uses the same active highlighting behavior as other bottom-nav items.",
       "files": [
-        "frontend/src/components/app/AppBottomNav.tsx",
-        "frontend/src/components/app/AppShell.tsx"
+        "frontend/src/components/app/AppBottomNav.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -17,20 +16,16 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-1"
+        "REQ-4"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-add-frontend-routes-and-pages-for-languages-profile-notifications-and-averages-and-ensure-each-is-reachable-from-the-new-bottom-navigation-bar",
-      "featureTitle": "Add frontend routes and pages for Languages, Profile, Notifications, and Averages, and ensure each is reachable from the new bottom navigation bar.",
+      "featureId": "feature-implement-the-requested-interaction-for-goals-users-must-be-able-to-either-swipe-slide-a-goal-card-or-use-a-checkbox-control-to-mark-a-goal-as-completed-not-completed-directly-from-the-goals-list-without-needing-to-open-the-goal-detail-page",
+      "featureTitle": "Implement the requested interaction for goals: users must be able to either swipe/slide a goal card or use a checkbox control to mark a goal as completed/not completed directly from the goals list, without needing to open the goal detail page.",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/app/AppBottomNav.tsx",
-        "frontend/src/pages/AveragesPage.tsx",
-        "frontend/src/pages/LanguagesPage.tsx",
-        "frontend/src/pages/NotificationsPage.tsx",
-        "frontend/src/pages/ProfilePage.tsx"
+        "frontend/src/components/goals/GoalCard.tsx",
+        "frontend/src/hooks/useQueries.ts"
       ],
       "components": [
         "authorization@4.0.0",
@@ -41,27 +36,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-2"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-the-layout-spacing-so-page-content-is-not-hidden-behind-the-new-sticky-bottom-navigation-bar",
-      "featureTitle": "Update the layout spacing so page content is not hidden behind the new sticky bottom navigation bar.",
-      "files": [
-        "frontend/src/components/app/AppBottomNav.tsx",
-        "frontend/src/components/app/AppShell.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-3"
+        "REQ-5"
       ],
       "confidence": "high"
     }
