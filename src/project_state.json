@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "New project",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-add-new-authenticated-routes-for-a-stats-page-and-a-settings-page-and-ensure-route-content-renders-correctly-within-the-app-layout",
+      "title": "Add new authenticated routes for a Stats page and a Settings page, and ensure route content renders correctly within the app layout.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-persistent-in-app-navigation-menu-tabs-or-header-nav-for-signed-in-users-to-access-my-goals-new-goal-create-stats-stats-and-settings-settings",
+      "title": "Add a persistent in-app navigation menu (tabs or header nav) for signed-in users to access: My Goals (/), New Goal (/create), Stats (/stats), and Settings (/settings).",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-stats-page-ui-to-display-basic-goal-analytics-computed-from-the-existing-goals-list-no-new-backend-apis",
+      "title": "Implement the Stats page UI to display basic goal analytics computed from the existing goals list (no new backend APIs).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-settings-page-ui-to-allow-the-signed-in-user-to-view-and-update-their-profile-name-using-existing-profile-apis-with-proper-loading-saving-states",
+      "title": "Implement the Settings page UI to allow the signed-in user to view and update their profile name using existing profile APIs, with proper loading/saving states.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Add a Stats page to the app",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Add a Settings (Paramètres) page to the app",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Add a menu/tab navigation to access pages (Home/My Goals, Add Goal, Stats, Settings)",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Add Stats and Settings pages with top navigation",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

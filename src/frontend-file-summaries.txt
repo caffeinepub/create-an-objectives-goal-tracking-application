@@ -1,0 +1,22 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup including routes for dashboard, create, detail, stats, and settings pages, with authentication flow and profile setup modal trigger using a single Outlet in the Layout component.",
+  "frontend/src/components/app/AppShell.tsx": "Shared application shell component with header (logo, navigation for authenticated users, auth controls), main content area, and footer with attribution.",
+  "frontend/src/components/auth/AuthControls.tsx": "Authentication controls component displaying user name and sign in/out button with loading states, relying on React Query cache invalidation for profile updates.",
+  "frontend/src/components/profile/ProfileSetupModal.tsx": "Modal dialog for first-time user profile setup, collecting display name after Internet Identity login.",
+  "frontend/src/components/goals/GoalCard.tsx": "Goal list item card component displaying title, status badge, description, progress bar, and target date with click navigation to detail view.",
+  "frontend/src/components/goals/GoalForm.tsx": "Reusable form component for creating and editing goals with validation, supporting title, description, status, target date, and progress fields.",
+  "frontend/src/components/state/LoadingState.tsx": "Loading skeleton components for list and detail views using shadcn/ui Skeleton primitives.",
+  "frontend/src/components/state/EmptyGoalsState.tsx": "Empty state component with illustration and call-to-action button when user has no goals.",
+  "frontend/src/pages/GoalsDashboardPage.tsx": "Main dashboard page displaying user's goals with filter buttons (All, Not Started, In Progress, Completed) and grid layout.",
+  "frontend/src/pages/CreateGoalPage.tsx": "Page for creating new goals using GoalForm component with navigation back to dashboard on success.",
+  "frontend/src/pages/GoalDetailPage.tsx": "Goal detail and edit page with update form, delete confirmation dialog, and error handling.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations including user profile management and CRUD operations for goals with proper cache invalidation.",
+  "frontend/src/lib/goals/types.ts": "Helper functions for goal status labels and badge color variants, plus a constant array of all available statuses.",
+  "frontend/src/lib/goals/validation.ts": "Client-side validation functions for goal title and progress with English error messages.",
+  "frontend/src/lib/time.ts": "Utility functions for converting between backend Time (bigint nanoseconds) and JavaScript Date objects, plus formatting helpers.",
+  "frontend/src/index.css": "Global styles with warm earthy OKLCH color palette (terracotta, sand, amber) for both light and dark modes.",
+  "frontend/tailwind.config.js": "Tailwind configuration with Inter font family, extended color tokens, custom shadows, and animation keyframes.",
+  "frontend/src/components/app/AppNav.tsx": "Navigation component for authenticated users displaying links to My Goals, New Goal, Stats, and Settings with active route styling using TanStack Router.",
+  "frontend/src/pages/StatsPage.tsx": "Statistics page displaying goal analytics computed from user's goals including total count, status breakdowns, and average progress with loading and error states.",
+  "frontend/src/pages/SettingsPage.tsx": "Settings page for viewing and updating user profile name with client-side validation, loading/saving states, and success/error feedback."
+}

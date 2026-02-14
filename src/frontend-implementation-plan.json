@@ -1,0 +1,99 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Add Stats and Settings pages with authenticated navigation",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Add authenticated routes for Stats and Settings and ensure routed content renders once within the AppShell layout.",
+      "acceptanceCriteria": [
+        "When signed in, navigating to /stats renders the Stats page.",
+        "When signed in, navigating to /settings renders the Settings page.",
+        "Existing routes continue to work: / (My Goals), /create (Create New Goal), /goal/:goalId (Edit Goal).",
+        "Route content renders once (no duplicate outlets) inside the AppShell layout."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register new /stats and /settings routes in the TanStack Router tree, and ensure the Layout renders routed content via a single Outlet inside AppShell (fix any duplicate router-outlet rendering). Use the authorization component’s frontend guidance to keep these routes effectively authenticated (only show app content when identity exists). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/StatsPage.tsx",
+          "operation": "create",
+          "description": "Create the Stats page view component to be used by the /stats route (authenticated experience)."
+        },
+        {
+          "path": "frontend/src/pages/SettingsPage.tsx",
+          "operation": "create",
+          "description": "Create the Settings page view component to be used by the /settings route (authenticated experience)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add persistent in-app navigation in the AppShell header for signed-in users (My Goals, New Goal, Stats, Settings) with active-state styling.",
+      "acceptanceCriteria": [
+        "When signed in, the header shows navigation items/links for My Goals, New Goal, Stats, and Settings.",
+        "Active route is visually indicated in the navigation.",
+        "When signed out, navigation items that require authentication are hidden or disabled."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/app/AppShell.tsx",
+          "operation": "modify",
+          "description": "Add a persistent header navigation for authenticated users with links to /, /create, /stats, and /settings, and visually indicate the active route (e.g., via TanStack Router link active styling). Hide/disable these items when signed out per the authorization component’s frontend guidance. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/app/AppNav.tsx",
+          "operation": "create",
+          "description": "Add an AppNav component used by AppShell to render the signed-in navigation items and active-state styling. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Implement Stats page UI with basic analytics computed on the frontend from the existing goals list.",
+      "acceptanceCriteria": [
+        "Stats page uses existing frontend query/hooks to load the user’s goals.",
+        "Stats page displays, at minimum: total goals count; counts by status (Not Started, In Progress, Completed); average progress (0–100).",
+        "Stats page shows appropriate loading and error states consistent with the rest of the app.",
+        "All user-facing text on the Stats page is in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/StatsPage.tsx",
+          "operation": "modify",
+          "description": "Use existing hooks (useGetAllGoals) to load goals and compute analytics on the client: total count, per-status counts (notStarted/inProgress/completed), and average progress (0–100) derived from each goal’s progress. Render loading using existing LoadingState and errors using the same Alert pattern as existing pages; ensure all copy is English."
+        },
+        {
+          "path": "frontend/src/lib/goals/types.ts",
+          "operation": "modify",
+          "description": "Add small shared helpers as needed for Stats display (e.g., a stable ordered list of statuses and/or label mapping reuse) without changing existing behavior for current pages."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Implement Settings page UI to view and update the signed-in user’s profile name using existing profile APIs, with proper loading/saving/validation states.",
+      "acceptanceCriteria": [
+        "Settings page loads and displays the current profile name (if present).",
+        "User can update and save their profile name; on success, the app reflects the updated name (including in the header/auth area where applicable).",
+        "Settings page shows validation and saving/loading states consistent with existing UI patterns.",
+        "All user-facing text on the Settings page is in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/SettingsPage.tsx",
+          "operation": "modify",
+          "description": "Use existing profile hooks (useGetCallerUserProfile, useSaveCallerUserProfile) to load and edit the profile name. Provide client-side validation (e.g., non-empty, reasonable max length), disable save while loading/saving, and show error/success feedback consistent with existing UI patterns. Follow authorization component guidance: user must be logged in to view/update profile, and handle authorization failures gracefully. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/auth/AuthControls.tsx",
+          "operation": "modify",
+          "description": "Ensure the header/auth area reflects profile name updates promptly by relying on the existing currentUserProfile query and its invalidation; adjust rendering (if needed) so the updated name shows without requiring a full reload. Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

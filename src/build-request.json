@@ -1,0 +1,99 @@
+{
+  "kind": "build_request",
+  "title": "Add Stats and Settings pages with top navigation",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Add new authenticated routes for a Stats page and a Settings page, and ensure route content renders correctly within the app layout.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1",
+          "msg-2"
+        ],
+        "quotes": [
+          "Et elles sont où toutes les pages menu ajouter des objectifs paramètres et stats",
+          "Ajoute les"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When signed in, navigating to /stats renders the Stats page.",
+        "When signed in, navigating to /settings renders the Settings page.",
+        "Existing routes continue to work: / (My Goals), /create (Create New Goal), /goal/:goalId (Edit Goal).",
+        "Route content renders once (no duplicate outlets) inside the AppShell layout."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add a persistent in-app navigation menu (tabs or header nav) for signed-in users to access: My Goals (/), New Goal (/create), Stats (/stats), and Settings (/settings).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Et elles sont où toutes les pages menu ajouter des objectifs paramètres et stats"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When signed in, the header shows navigation items/links for My Goals, New Goal, Stats, and Settings.",
+        "Active route is visually indicated in the navigation.",
+        "When signed out, navigation items that require authentication are hidden or disabled."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Implement the Stats page UI to display basic goal analytics computed from the existing goals list (no new backend APIs).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1",
+          "msg-2"
+        ],
+        "quotes": [
+          "Et elles sont où toutes les pages menu ajouter des objectifs paramètres et stats",
+          "Ajoute les"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Stats page uses existing frontend query/hooks to load the user’s goals.",
+        "Stats page displays, at minimum: total goals count; counts by status (Not Started, In Progress, Completed); average progress (0–100).",
+        "Stats page shows appropriate loading and error states consistent with the rest of the app.",
+        "All user-facing text on the Stats page is in English."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Implement the Settings page UI to allow the signed-in user to view and update their profile name using existing profile APIs, with proper loading/saving states.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Ajoute les"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Settings page loads and displays the current profile name (if present).",
+        "User can update and save their profile name; on success, the app reflects the updated name (including in the header/auth area where applicable).",
+        "Settings page shows validation and saving/loading states consistent with existing UI patterns.",
+        "All user-facing text on the Settings page is in English."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui (immutable paths).",
+    "Do not add new backend canisters or external databases/services; keep within the existing single-actor Motoko backend and React app."
+  ],
+  "nonGoals": [
+    "Adding new backend endpoints specifically for stats aggregation (compute stats on the frontend from existing goal data).",
+    "Adding advanced charting libraries or complex data visualizations unless already available in the project.",
+    "Implementing additional settings beyond profile name management unless explicitly requested."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}
