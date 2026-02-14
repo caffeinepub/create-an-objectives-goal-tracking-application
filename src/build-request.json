@@ -1,96 +1,74 @@
 {
   "kind": "build_request",
-  "title": "Add Stats and Settings pages with top navigation",
+  "title": "Add bottom navigation for Settings, Languages, Profile, Notifications, and Statistics/Averages",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Add new authenticated routes for a Stats page and a Settings page, and ensure route content renders correctly within the app layout.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1",
-          "msg-2"
-        ],
-        "quotes": [
-          "Et elles sont où toutes les pages menu ajouter des objectifs paramètres et stats",
-          "Ajoute les"
-        ]
-      },
-      "acceptanceCriteria": [
-        "When signed in, navigating to /stats renders the Stats page.",
-        "When signed in, navigating to /settings renders the Settings page.",
-        "Existing routes continue to work: / (My Goals), /create (Create New Goal), /goal/:goalId (Edit Goal).",
-        "Route content renders once (no duplicate outlets) inside the AppShell layout."
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "Add a persistent in-app navigation menu (tabs or header nav) for signed-in users to access: My Goals (/), New Goal (/create), Stats (/stats), and Settings (/settings).",
+      "text": "Add a persistent bottom navigation bar (sticky at the bottom of the viewport) for authenticated users that provides one-tap navigation to: Settings, Languages, Profile, Notifications, Statistics, and Averages.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-1"
         ],
         "quotes": [
-          "Et elles sont où toutes les pages menu ajouter des objectifs paramètres et stats"
+          "Je veux que tu mettes en bas les pages paramètre langues profils notifis , statistiques moyennes…"
         ]
       },
       "acceptanceCriteria": [
-        "When signed in, the header shows navigation items/links for My Goals, New Goal, Stats, and Settings.",
-        "Active route is visually indicated in the navigation.",
-        "When signed out, navigation items that require authentication are hidden or disabled."
+        "When the user is authenticated, a bottom navigation bar is visible on all app pages.",
+        "Bottom navigation includes items labeled in English: \"Settings\", \"Languages\", \"Profile\", \"Notifications\", \"Statistics\", and \"Averages\".",
+        "The currently active destination is visually highlighted based on the current route pathname.",
+        "Navigation works without full page reload and uses the existing TanStack Router setup.",
+        "Unauthenticated users do not see the bottom navigation."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add frontend routes and pages for Languages, Profile, Notifications, and Averages, and ensure each is reachable from the new bottom navigation bar.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Je veux que tu mettes en bas les pages paramètre langues profils notifis , statistiques moyennes…"
+        ]
+      },
+      "acceptanceCriteria": [
+        "New routes exist for Languages, Profile, Notifications, and Averages pages (in addition to existing /settings and /stats).",
+        "Each new page renders a clear page title (English) matching the bottom-nav label.",
+        "Each new page is accessible by clicking its bottom navigation item.",
+        "Existing routes (/settings and /stats) continue to work as before."
       ]
     },
     {
       "id": "REQ-3",
-      "text": "Implement the Stats page UI to display basic goal analytics computed from the existing goals list (no new backend APIs).",
+      "text": "Update the layout spacing so page content is not hidden behind the new sticky bottom navigation bar.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1",
-          "msg-2"
+          "msg-1"
         ],
         "quotes": [
-          "Et elles sont où toutes les pages menu ajouter des objectifs paramètres et stats",
-          "Ajoute les"
+          "Je veux que tu mettes en bas les pages paramètre langues profils notifis , statistiques moyennes…"
         ]
       },
       "acceptanceCriteria": [
-        "Stats page uses existing frontend query/hooks to load the user’s goals.",
-        "Stats page displays, at minimum: total goals count; counts by status (Not Started, In Progress, Completed); average progress (0–100).",
-        "Stats page shows appropriate loading and error states consistent with the rest of the app.",
-        "All user-facing text on the Stats page is in English."
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "text": "Implement the Settings page UI to allow the signed-in user to view and update their profile name using existing profile APIs, with proper loading/saving states.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "Ajoute les"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Settings page loads and displays the current profile name (if present).",
-        "User can update and save their profile name; on success, the app reflects the updated name (including in the header/auth area where applicable).",
-        "Settings page shows validation and saving/loading states consistent with existing UI patterns.",
-        "All user-facing text on the Settings page is in English."
+        "On all pages, the main content area has sufficient bottom padding/margin so the bottom navigation does not overlap interactive content.",
+        "This is verified on short pages (e.g., Settings) and long pages (e.g., Goals list) with scrolling."
       ]
     }
   ],
   "constraints": [
-    "Do not modify files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui (immutable paths).",
-    "Do not add new backend canisters or external databases/services; keep within the existing single-actor Motoko backend and React app."
+    "Do not modify files under frontend/src/components/ui (shadcn components must be composed, not edited).",
+    "Do not modify immutable hook files: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx.",
+    "Backend must remain a single Motoko actor (no additional services)."
   ],
   "nonGoals": [
-    "Adding new backend endpoints specifically for stats aggregation (compute stats on the frontend from existing goal data).",
-    "Adding advanced charting libraries or complex data visualizations unless already available in the project.",
-    "Implementing additional settings beyond profile name management unless explicitly requested."
+    "Implementing actual language switching/i18n behavior beyond adding a Languages page route and UI scaffold.",
+    "Implementing notification delivery (push/SMS/email) or real-time messaging.",
+    "Changing authentication provider (must remain Internet Identity)."
   ],
   "imageRequirements": {
     "required": [],

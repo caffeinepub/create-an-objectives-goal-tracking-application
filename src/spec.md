@@ -1,12 +1,12 @@
 # Specification
 
 ## Summary
-**Goal:** Add authenticated Stats and Settings pages and a persistent top navigation for signed-in users.
+**Goal:** Add a persistent bottom navigation for authenticated users to quickly access Settings, Languages, Profile, Notifications, Statistics, and Averages.
 
 **Planned changes:**
-- Add new authenticated routes for `/stats` and `/settings`, ensuring all route content renders correctly within the existing AppShell layout (no duplicate outlets).
-- Add a persistent in-app top navigation (tabs/header nav) for signed-in users linking to: My Goals (`/`), New Goal (`/create`), Stats (`/stats`), and Settings (`/settings`), with active route indication and hidden/disabled auth-only links when signed out.
-- Implement a Stats page that loads goals using existing frontend hooks/queries and displays: total goals, counts by status (Not Started/In Progress/Completed), and average progress (0–100), with loading/error states consistent with the app and English-only text.
-- Implement a Settings page that loads/displays the user profile name and allows updating/saving it using existing profile APIs, with validation and loading/saving states consistent with the app, updating the displayed name in the app where applicable, and English-only text.
+- Add a sticky bottom navigation bar visible on all pages when the user is authenticated, with items: Settings, Languages, Profile, Notifications, Statistics, and Averages.
+- Highlight the active bottom-nav item based on the current TanStack Router route/pathname and navigate client-side without full page reloads.
+- Add new frontend routes/pages for Languages, Profile, Notifications, and Averages (scaffold pages with clear English titles), keeping existing /settings and /stats unchanged.
+- Adjust global/layout spacing so page content is not hidden behind the sticky bottom navigation (ensure sufficient bottom padding/margin on short and long pages).
 
-**User-visible outcome:** Signed-in users can navigate via a top menu to My Goals, create a new goal, view basic goal statistics, and view/update their profile name in Settings.
+**User-visible outcome:** Authenticated users see a bottom navigation bar on every page and can one-tap navigate to Settings, Languages, Profile, Notifications, Statistics, and Averages without content being covered by the bar.

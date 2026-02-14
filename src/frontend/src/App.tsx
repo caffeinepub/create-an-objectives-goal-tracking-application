@@ -7,6 +7,10 @@ import { CreateGoalPage } from './pages/CreateGoalPage';
 import { GoalDetailPage } from './pages/GoalDetailPage';
 import { StatsPage } from './pages/StatsPage';
 import { SettingsPage } from './pages/SettingsPage';
+import { LanguagesPage } from './pages/LanguagesPage';
+import { ProfilePage } from './pages/ProfilePage';
+import { NotificationsPage } from './pages/NotificationsPage';
+import { AveragesPage } from './pages/AveragesPage';
 import { createRouter, RouterProvider, createRoute, createRootRoute, Outlet } from '@tanstack/react-router';
 import { Loader2 } from 'lucide-react';
 
@@ -85,7 +89,41 @@ const settingsRoute = createRoute({
   component: SettingsPage,
 });
 
-const routeTree = rootRoute.addChildren([indexRoute, createRoute_, detailRoute, statsRoute, settingsRoute]);
+const languagesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/languages',
+  component: LanguagesPage,
+});
+
+const profileRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/profile',
+  component: ProfilePage,
+});
+
+const notificationsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/notifications',
+  component: NotificationsPage,
+});
+
+const averagesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/averages',
+  component: AveragesPage,
+});
+
+const routeTree = rootRoute.addChildren([
+  indexRoute,
+  createRoute_,
+  detailRoute,
+  statsRoute,
+  settingsRoute,
+  languagesRoute,
+  profileRoute,
+  notificationsRoute,
+  averagesRoute,
+]);
 
 const router = createRouter({ routeTree });
 

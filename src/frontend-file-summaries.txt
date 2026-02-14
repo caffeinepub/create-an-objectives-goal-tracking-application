@@ -1,6 +1,6 @@
 {
-  "frontend/src/App.tsx": "Main application component with TanStack Router setup including routes for dashboard, create, detail, stats, and settings pages, with authentication flow and profile setup modal trigger using a single Outlet in the Layout component.",
-  "frontend/src/components/app/AppShell.tsx": "Shared application shell component with header (logo, navigation for authenticated users, auth controls), main content area, and footer with attribution.",
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup including routes for dashboard, create, detail, stats, settings, languages, profile, notifications, and averages pages, with authentication flow and profile setup modal trigger using a single Outlet in the Layout component.",
+  "frontend/src/components/app/AppShell.tsx": "Shared application shell component with header (logo, navigation for authenticated users, auth controls), main content area with conditional bottom padding for authenticated users, bottom navigation for mobile, and footer with attribution.",
   "frontend/src/components/auth/AuthControls.tsx": "Authentication controls component displaying user name and sign in/out button with loading states, relying on React Query cache invalidation for profile updates.",
   "frontend/src/components/profile/ProfileSetupModal.tsx": "Modal dialog for first-time user profile setup, collecting display name after Internet Identity login.",
   "frontend/src/components/goals/GoalCard.tsx": "Goal list item card component displaying title, status badge, description, progress bar, and target date with click navigation to detail view.",
@@ -18,5 +18,10 @@
   "frontend/tailwind.config.js": "Tailwind configuration with Inter font family, extended color tokens, custom shadows, and animation keyframes.",
   "frontend/src/components/app/AppNav.tsx": "Navigation component for authenticated users displaying links to My Goals, New Goal, Stats, and Settings with active route styling using TanStack Router.",
   "frontend/src/pages/StatsPage.tsx": "Statistics page displaying goal analytics computed from user's goals including total count, status breakdowns, and average progress with loading and error states.",
-  "frontend/src/pages/SettingsPage.tsx": "Settings page for viewing and updating user profile name with client-side validation, loading/saving states, and success/error feedback."
+  "frontend/src/pages/SettingsPage.tsx": "Settings page for viewing and updating user profile name with client-side validation, loading/saving states, and success/error feedback.",
+  "frontend/src/components/app/AppBottomNav.tsx": "Mobile-only sticky bottom navigation component displaying six navigation items (Settings, Languages, Profile, Notifications, Statistics, Averages) with icons and labels, using TanStack Router for client-side navigation and active route highlighting.",
+  "frontend/src/pages/LanguagesPage.tsx": "Languages page scaffold displaying a card with placeholder content for future language selection functionality.",
+  "frontend/src/pages/ProfilePage.tsx": "Profile page displaying user's display name, principal ID, and account status with loading and error states.",
+  "frontend/src/pages/NotificationsPage.tsx": "Notifications page scaffold displaying a card with placeholder content for future notification settings functionality.",
+  "frontend/src/pages/AveragesPage.tsx": "Averages page displaying average progress and completion rate across all goals with visual progress bars and summary statistics."
 }

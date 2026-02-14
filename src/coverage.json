@@ -1,82 +1,76 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-13T23:28:36.413Z",
+  "generatedAt": "2026-02-14T00:59:14.813Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 4,
-    "implemented": 4,
+    "total": 3,
+    "implemented": 3,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Add new authenticated routes for a Stats page and a Settings page, and ensure route content renders correctly within the app layout.",
+        "summary": "Add a persistent bottom navigation bar (sticky at the bottom of the viewport) for authenticated users that provides one-tap navigation to: Settings, Languages, Profile, Notifications, Statistics, and Averages.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/App.tsx",
-          "frontend/src/pages/StatsPage.tsx",
-          "frontend/src/pages/SettingsPage.tsx"
+          "frontend/src/components/app/AppBottomNav.tsx",
+          "frontend/src/components/app/AppShell.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/App.tsx",
-          "frontend/src/pages/StatsPage.tsx",
-          "frontend/src/pages/SettingsPage.tsx"
+          "frontend/src/components/app/AppBottomNav.tsx",
+          "frontend/src/components/app/AppShell.tsx"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "Add a persistent in-app navigation menu (tabs or header nav) for signed-in users to access: My Goals (/), New Goal (/create), Stats (/stats), and Settings (/settings).",
+        "summary": "Add frontend routes and pages for Languages, Profile, Notifications, and Averages, and ensure each is reachable from the new bottom navigation bar.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/app/AppShell.tsx",
-          "frontend/src/components/app/AppNav.tsx"
+          "frontend/src/pages/LanguagesPage.tsx",
+          "frontend/src/pages/ProfilePage.tsx",
+          "frontend/src/pages/NotificationsPage.tsx",
+          "frontend/src/pages/AveragesPage.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/components/app/AppBottomNav.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/app/AppShell.tsx",
-          "frontend/src/components/app/AppNav.tsx"
+          "frontend/src/pages/LanguagesPage.tsx",
+          "frontend/src/pages/ProfilePage.tsx",
+          "frontend/src/pages/NotificationsPage.tsx",
+          "frontend/src/pages/AveragesPage.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/components/app/AppBottomNav.tsx"
         ]
       },
       {
         "id": "REQ-3",
-        "summary": "Implement the Stats page UI to display basic goal analytics computed from the existing goals list (no new backend APIs).",
+        "summary": "Update the layout spacing so page content is not hidden behind the new sticky bottom navigation bar.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/StatsPage.tsx",
-          "frontend/src/lib/goals/types.ts"
+          "frontend/src/components/app/AppShell.tsx",
+          "frontend/src/components/app/AppBottomNav.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/pages/StatsPage.tsx",
-          "frontend/src/lib/goals/types.ts"
-        ]
-      },
-      {
-        "id": "REQ-4",
-        "summary": "Implement the Settings page UI to allow the signed-in user to view and update their profile name using existing profile APIs, with proper loading/saving states.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/SettingsPage.tsx",
-          "frontend/src/components/auth/AuthControls.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/SettingsPage.tsx"
+          "frontend/src/components/app/AppShell.tsx",
+          "frontend/src/components/app/AppBottomNav.tsx"
         ]
       }
     ]
   },
   "changedFiles": [
     "build-request.json",
-    "build-template/README.md",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
     "frontend/src/App.tsx",
-    "frontend/src/components/app/AppNav.tsx",
+    "frontend/src/components/app/AppBottomNav.tsx",
     "frontend/src/components/app/AppShell.tsx",
-    "frontend/src/lib/goals/types.ts",
-    "frontend/src/pages/SettingsPage.tsx",
-    "frontend/src/pages/StatsPage.tsx",
+    "frontend/src/pages/AveragesPage.tsx",
+    "frontend/src/pages/LanguagesPage.tsx",
+    "frontend/src/pages/NotificationsPage.tsx",
+    "frontend/src/pages/ProfilePage.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

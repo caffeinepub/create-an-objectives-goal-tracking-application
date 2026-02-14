@@ -2,12 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-new-authenticated-routes-for-a-stats-page-and-a-settings-page-and-ensure-route-content-renders-correctly-within-the-app-layout",
-      "featureTitle": "Add new authenticated routes for a Stats page and a Settings page, and ensure route content renders correctly within the app layout.",
+      "featureId": "feature-add-a-persistent-bottom-navigation-bar-sticky-at-the-bottom-of-the-viewport-for-authenticated-users-that-provides-one-tap-navigation-to-settings-languages-profile-notifications-statistics-and-averages",
+      "featureTitle": "Add a persistent bottom navigation bar (sticky at the bottom of the viewport) for authenticated users that provides one-tap navigation to: Settings, Languages, Profile, Notifications, Statistics, and Averages.",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/pages/SettingsPage.tsx",
-        "frontend/src/pages/StatsPage.tsx"
+        "frontend/src/components/app/AppBottomNav.tsx",
+        "frontend/src/components/app/AppShell.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -23,11 +22,15 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-add-a-persistent-in-app-navigation-menu-tabs-or-header-nav-for-signed-in-users-to-access-my-goals-new-goal-create-stats-stats-and-settings-settings",
-      "featureTitle": "Add a persistent in-app navigation menu (tabs or header nav) for signed-in users to access: My Goals (/), New Goal (/create), Stats (/stats), and Settings (/settings).",
+      "featureId": "feature-add-frontend-routes-and-pages-for-languages-profile-notifications-and-averages-and-ensure-each-is-reachable-from-the-new-bottom-navigation-bar",
+      "featureTitle": "Add frontend routes and pages for Languages, Profile, Notifications, and Averages, and ensure each is reachable from the new bottom navigation bar.",
       "files": [
-        "frontend/src/components/app/AppNav.tsx",
-        "frontend/src/components/app/AppShell.tsx"
+        "frontend/src/App.tsx",
+        "frontend/src/components/app/AppBottomNav.tsx",
+        "frontend/src/pages/AveragesPage.tsx",
+        "frontend/src/pages/LanguagesPage.tsx",
+        "frontend/src/pages/NotificationsPage.tsx",
+        "frontend/src/pages/ProfilePage.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -43,11 +46,11 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-implement-the-stats-page-ui-to-display-basic-goal-analytics-computed-from-the-existing-goals-list-no-new-backend-apis",
-      "featureTitle": "Implement the Stats page UI to display basic goal analytics computed from the existing goals list (no new backend APIs).",
+      "featureId": "feature-update-the-layout-spacing-so-page-content-is-not-hidden-behind-the-new-sticky-bottom-navigation-bar",
+      "featureTitle": "Update the layout spacing so page content is not hidden behind the new sticky bottom navigation bar.",
       "files": [
-        "frontend/src/lib/goals/types.ts",
-        "frontend/src/pages/StatsPage.tsx"
+        "frontend/src/components/app/AppBottomNav.tsx",
+        "frontend/src/components/app/AppShell.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -59,25 +62,6 @@
       ],
       "testIds": [
         "REQ-3"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-the-settings-page-ui-to-allow-the-signed-in-user-to-view-and-update-their-profile-name-using-existing-profile-apis-with-proper-loading-saving-states",
-      "featureTitle": "Implement the Settings page UI to allow the signed-in user to view and update their profile name using existing profile APIs, with proper loading/saving states.",
-      "files": [
-        "frontend/src/pages/SettingsPage.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-4"
       ],
       "confidence": "high"
     }

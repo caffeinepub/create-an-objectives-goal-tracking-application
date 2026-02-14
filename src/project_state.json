@@ -1,40 +1,37 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "New project",
-  "architectural_notes": [],
-  "known_issues": [],
-  "isFixRequest": false,
+  "summary": "Build a task/todo-style app with a Settings area (language selection, profile, notifications) and a Statistics area showing daily completion percentage plus weekly/monthly averages, with navigation links in a bottom bar.",
+  "architectural_notes": [
+    "Statistics require per-day aggregation of completed vs total items to compute daily % and weekly/monthly averages.",
+    "Add bottom navigation (persistent) to access core sections (Home, Settings, Stats)."
+  ],
+  "known_issues": [
+    "User reports some requested features were not added previously (needs verification/regression check)."
+  ],
+  "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-add-new-authenticated-routes-for-a-stats-page-and-a-settings-page-and-ensure-route-content-renders-correctly-within-the-app-layout",
-      "title": "Add new authenticated routes for a Stats page and a Settings page, and ensure route content renders correctly within the app layout.",
+      "id": "feature-add-a-persistent-bottom-navigation-bar-sticky-at-the-bottom-of-the-viewport-for-authenticated-users-that-provides-one-tap-navigation-to-settings-languages-profile-notifications-statistics-and-averages",
+      "title": "Add a persistent bottom navigation bar (sticky at the bottom of the viewport) for authenticated users that provides one-tap navigation to: Settings, Languages, Profile, Notifications, Statistics, and Averages.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-add-a-persistent-in-app-navigation-menu-tabs-or-header-nav-for-signed-in-users-to-access-my-goals-new-goal-create-stats-stats-and-settings-settings",
-      "title": "Add a persistent in-app navigation menu (tabs or header nav) for signed-in users to access: My Goals (/), New Goal (/create), Stats (/stats), and Settings (/settings).",
+      "id": "feature-add-frontend-routes-and-pages-for-languages-profile-notifications-and-averages-and-ensure-each-is-reachable-from-the-new-bottom-navigation-bar",
+      "title": "Add frontend routes and pages for Languages, Profile, Notifications, and Averages, and ensure each is reachable from the new bottom navigation bar.",
       "reqIds": [
         "REQ-2"
       ],
       "version": 1
     },
     {
-      "id": "feature-implement-the-stats-page-ui-to-display-basic-goal-analytics-computed-from-the-existing-goals-list-no-new-backend-apis",
-      "title": "Implement the Stats page UI to display basic goal analytics computed from the existing goals list (no new backend APIs).",
+      "id": "feature-update-the-layout-spacing-so-page-content-is-not-hidden-behind-the-new-sticky-bottom-navigation-bar",
+      "title": "Update the layout spacing so page content is not hidden behind the new sticky bottom navigation bar.",
       "reqIds": [
         "REQ-3"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-implement-the-settings-page-ui-to-allow-the-signed-in-user-to-view-and-update-their-profile-name-using-existing-profile-apis-with-proper-loading-saving-states",
-      "title": "Implement the Settings page UI to allow the signed-in user to view and update their profile name using existing profile APIs, with proper loading/saving states.",
-      "reqIds": [
-        "REQ-4"
       ],
       "version": 1
     }
@@ -42,24 +39,54 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Add a Stats page to the app",
+      "summary": "Add Settings page with language selection",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-2",
-      "summary": "Add a Settings (Paramètres) page to the app",
+      "summary": "Add Settings: profile section",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-3",
-      "summary": "Add a menu/tab navigation to access pages (Home/My Goals, Add Goal, Stats, Settings)",
+      "summary": "Add Settings: notifications controls",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Add done/not-done checkbox control to mark items as completed",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Add daily statistics: completion percentage based on checked items, displayed as an animated circular progress indicator",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Add weekly average completion percentage",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Add monthly average completion percentage",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Add bottom navigation bar linking to key pages (Settings, Languages, Profile, Notifications, Statistics/Averages, Home)",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "projectName": "Add Stats and Settings pages with top navigation",
+  "projectName": "Add bottom navigation for Settings, Languages, Profile, Notifications, and Statistics/Averages",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

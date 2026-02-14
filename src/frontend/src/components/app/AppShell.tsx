@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { AuthControls } from '../auth/AuthControls';
 import { AppNav } from './AppNav';
+import { AppBottomNav } from './AppBottomNav';
 import { useInternetIdentity } from '../../hooks/useInternetIdentity';
 import { useNavigate } from '@tanstack/react-router';
 
@@ -40,9 +41,11 @@ export function AppShell({ children }: AppShellProps) {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8">
+      <main className={`container mx-auto px-4 py-8 ${isAuthenticated ? 'pb-24 md:pb-8' : ''}`}>
         {children}
       </main>
+
+      {isAuthenticated && <AppBottomNav />}
 
       <footer className="border-t border-border mt-16 py-8 bg-card/30">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
